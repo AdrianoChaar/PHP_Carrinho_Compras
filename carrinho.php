@@ -2,11 +2,17 @@
     // Avisando o PHP que vamos trabalhar com sessões.
     session_start();
 
+    // inicializando a sessão
+    if(is_null($_SESSION['carrinho'])) {
+        $_SESSION['carrinho'] = array();
+    }
+
+
     // Adicionar ao carrinho
     if(isset($_GET['adicionar'])) {
          $temp = array("produto" => "Celular Motorola",
                        "preco" => 1000.00,
-                       "quantidade" => 1
+                       "quantidade" => 1,
                        "total" => 1000.00);
         
         $_SESSION['carrinho'][] = $temp;
@@ -37,7 +43,7 @@
                     <th>Quantidade</th>
                     <th>Preço</th>
                     <th>Total</th>
-                <tr>
+                </tr>
             </thead>
             <tbody>
                 <!-- Percorrendo o array de produtos com a 
@@ -48,7 +54,7 @@
                     <td><?= $carrinho[$i]['qnt'] ?></td>
                     <td><?= $carrinho[$i]['preco'] ?></td>
                     <td><?= $carrinho[$i]['total'] ?></td>                    
-                <tr>                
+                </tr>                
                 <?php endfor; ?>
             <tbody>
         </table>
