@@ -3,7 +3,7 @@
     session_start();
 
     // inicializando a sessão
-    if(is_null($_SESSION['carrinho'])) {
+    if(!isset($_SESSION['carrinho'])) {
         $_SESSION['carrinho'] = array();
     }
 
